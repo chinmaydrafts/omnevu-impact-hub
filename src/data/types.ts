@@ -15,26 +15,26 @@ export type AssuranceStatus =
 export interface EvidenceItem {
   id: string;
   label: string;
-  href?: string;
-  owner?: string;
-  validationDate?: string;
+  href?: string | undefined;
+  owner?: string | undefined;
+  validationDate?: string | undefined;
   status: DisclosureStatus;
 }
 
 export interface PeriodValue {
   period: string;
-  value?: number | string;
-  unit?: string;
-  numerator?: number;
-  denominator?: number;
-  note?: string;
+  value?: number | string | undefined;
+  unit?: string | undefined;
+  numerator?: number | undefined;
+  denominator?: number | undefined;
+  note?: string | undefined;
 }
 
 export interface DisclosureTable {
-  caption?: string;
-  columns: Array<{ key: string; label: string; numeric?: boolean }>;
+  caption?: string | undefined;
+  columns: Array<{ key: string; label: string; numeric?: boolean }> | undefined;
   rows: Array<Record<string, string | number | null>>;
-  footnotes?: string[];
+  footnotes?: string[] | undefined;
 }
 
 export type ResponseType =
@@ -49,23 +49,23 @@ export type ResponseType =
 export interface Disclosure {
   id: string;
   section: "A" | "B" | "C";
-  principle?: number;
-  tier?: "essential" | "leadership";
+  principle?: number | undefined;
+  tier?: "essential" | "leadership" | undefined;
   number: string;
   title: string;
   question: string;
   status: DisclosureStatus;
-  applicabilityReason?: string;
+  applicabilityReason?: string | undefined;
   responseType: ResponseType;
-  narrative?: string;
-  emptyStateHint?: string;
-  periods?: PeriodValue[];
-  table?: DisclosureTable;
-  tables?: DisclosureTable[];
+  narrative?: string | undefined;
+  emptyStateHint?: string | undefined;
+  periods?: PeriodValue[] | undefined;
+  table?: DisclosureTable | undefined;
+  tables?: DisclosureTable[] | undefined;
   evidence: EvidenceItem[];
-  methodology?: string;
-  dataOwner?: string;
-  lastUpdated?: string;
+  methodology?: string | undefined;
+  dataOwner?: string | undefined;
+  lastUpdated?: string | undefined;
   assurance: AssuranceStatus;
 }
 
@@ -81,7 +81,7 @@ export interface PrincipleMeta {
   accent: "primary" | "cyan" | "green" | "orange" | "tint";
   imageTopic: string;
   /** CMS-friendly replaceable image field */
-  imageSrc?: string;
+  imageSrc?: string | undefined;
 }
 
 export interface PrincipleContent {
@@ -89,13 +89,13 @@ export interface PrincipleContent {
   intro: string;
   essential: Disclosure[];
   leadership: Disclosure[];
-  methodologyNote?: string;
+  methodologyNote?: string | undefined;
 }
 
 export interface DisclosureGroup {
   id: string;
   roman: string;
   title: string;
-  intro?: string;
+  intro?: string | undefined;
   disclosures: Disclosure[];
 }
