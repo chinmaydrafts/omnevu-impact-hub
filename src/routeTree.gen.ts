@@ -14,6 +14,7 @@ import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
 import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
 import { Route as BrsrGeneralDisclosuresRouteImport } from './routes/brsr.general-disclosures'
 import { Route as BrsrManagementProcessRouteImport } from './routes/brsr.management-process'
+import { Route as BrsrPrincipleIdRouteImport } from './routes/brsr.principle.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const BrsrManagementProcessRoute = BrsrManagementProcessRouteImport.update({
   path: '/brsr/management-process',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrsrPrincipleIdRoute = BrsrPrincipleIdRouteImport.update({
+  id: '/brsr/principle/$id',
+  path: '/brsr/principle/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/': typeof BrsrIndexRoute
+  '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr': typeof BrsrIndexRoute
+  '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,6 +70,7 @@ export interface FileRoutesById {
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/': typeof BrsrIndexRoute
+  '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,6 +80,7 @@ export interface FileRouteTypes {
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
     | '/brsr/'
+    | '/brsr/principle/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -78,6 +88,7 @@ export interface FileRouteTypes {
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
     | '/brsr'
+    | '/brsr/principle/$id'
   id:
     | '__root__'
     | '/'
@@ -85,6 +96,7 @@ export interface FileRouteTypes {
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
     | '/brsr/'
+    | '/brsr/principle/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -93,6 +105,7 @@ export interface RootRouteChildren {
   BrsrGeneralDisclosuresRoute: typeof BrsrGeneralDisclosuresRoute
   BrsrManagementProcessRoute: typeof BrsrManagementProcessRoute
   BrsrIndexRoute: typeof BrsrIndexRoute
+  BrsrPrincipleIdRoute: typeof BrsrPrincipleIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -132,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrsrManagementProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brsr/principle/$id': {
+      id: '/brsr/principle/$id'
+      path: '/brsr/principle/$id'
+      fullPath: '/brsr/principle/$id'
+      preLoaderRoute: typeof BrsrPrincipleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -141,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrsrGeneralDisclosuresRoute: BrsrGeneralDisclosuresRoute,
   BrsrManagementProcessRoute: BrsrManagementProcessRoute,
   BrsrIndexRoute: BrsrIndexRoute,
+  BrsrPrincipleIdRoute: BrsrPrincipleIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
