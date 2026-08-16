@@ -32,8 +32,10 @@ export function SearchDialog() {
   const go = (entry: SearchEntry) => {
     setOpen(false);
     setQuery("");
-    navigate({ to: entry.route, hash: entry.hash });
+    const options = entry.hash ? { to: entry.route, hash: entry.hash } : { to: entry.route };
+    void navigate(options as Parameters<typeof navigate>[0]);
   };
+
 
   const grouped = results.reduce<Record<string, SearchEntry[]>>((acc, entry) => {
     (acc[entry.context] ??= []).push(entry);
