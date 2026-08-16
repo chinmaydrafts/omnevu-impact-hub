@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
+import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const BrsrIndexRoute = BrsrIndexRouteImport.update({
   path: '/brsr/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrsrAssuranceRoute = BrsrAssuranceRouteImport.update({
+  id: '/brsr/assurance',
+  path: '/brsr/assurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/': typeof BrsrIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr': typeof BrsrIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/': typeof BrsrIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/brsr/'
+  fullPaths: '/' | '/brsr/assurance' | '/brsr/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/brsr'
-  id: '__root__' | '/' | '/brsr/'
+  to: '/' | '/brsr/assurance' | '/brsr'
+  id: '__root__' | '/' | '/brsr/assurance' | '/brsr/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrsrAssuranceRoute: typeof BrsrAssuranceRoute
   BrsrIndexRoute: typeof BrsrIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrsrIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brsr/assurance': {
+      id: '/brsr/assurance'
+      path: '/brsr/assurance'
+      fullPath: '/brsr/assurance'
+      preLoaderRoute: typeof BrsrAssuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrsrAssuranceRoute: BrsrAssuranceRoute,
   BrsrIndexRoute: BrsrIndexRoute,
 }
 export const routeTree = rootRouteImport
