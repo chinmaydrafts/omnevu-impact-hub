@@ -32,7 +32,7 @@ export interface PeriodValue {
 
 export interface DisclosureTable {
   caption?: string | undefined;
-  columns: Array<{ key: string; label: string; numeric?: boolean }> | undefined;
+  columns: Array<{ key: string; label: string; numeric?: boolean | undefined }>;
   rows: Array<Record<string, string | number | null>>;
   footnotes?: string[] | undefined;
 }
