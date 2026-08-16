@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
 import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
+import { Route as BrsrDownloadsRouteImport } from './routes/brsr.downloads'
 import { Route as BrsrGeneralDisclosuresRouteImport } from './routes/brsr.general-disclosures'
 import { Route as BrsrManagementProcessRouteImport } from './routes/brsr.management-process'
 import { Route as BrsrMethodologyRouteImport } from './routes/brsr.methodology'
@@ -30,6 +31,11 @@ const BrsrIndexRoute = BrsrIndexRouteImport.update({
 const BrsrAssuranceRoute = BrsrAssuranceRouteImport.update({
   id: '/brsr/assurance',
   path: '/brsr/assurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrDownloadsRoute = BrsrDownloadsRouteImport.update({
+  id: '/brsr/downloads',
+  path: '/brsr/downloads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrsrGeneralDisclosuresRoute = BrsrGeneralDisclosuresRouteImport.update({
@@ -56,6 +62,7 @@ const BrsrPrincipleIdRoute = BrsrPrincipleIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/methodology': typeof BrsrMethodologyRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/methodology': typeof BrsrMethodologyRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/methodology': typeof BrsrMethodologyRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/brsr/assurance'
+    | '/brsr/downloads'
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
     | '/brsr/methodology'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/brsr/assurance'
+    | '/brsr/downloads'
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
     | '/brsr/methodology'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/brsr/assurance'
+    | '/brsr/downloads'
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
     | '/brsr/methodology'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrsrAssuranceRoute: typeof BrsrAssuranceRoute
+  BrsrDownloadsRoute: typeof BrsrDownloadsRoute
   BrsrGeneralDisclosuresRoute: typeof BrsrGeneralDisclosuresRoute
   BrsrManagementProcessRoute: typeof BrsrManagementProcessRoute
   BrsrMethodologyRoute: typeof BrsrMethodologyRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/brsr/assurance'
       fullPath: '/brsr/assurance'
       preLoaderRoute: typeof BrsrAssuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/downloads': {
+      id: '/brsr/downloads'
+      path: '/brsr/downloads'
+      fullPath: '/brsr/downloads'
+      preLoaderRoute: typeof BrsrDownloadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brsr/general-disclosures': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrsrAssuranceRoute: BrsrAssuranceRoute,
+  BrsrDownloadsRoute: BrsrDownloadsRoute,
   BrsrGeneralDisclosuresRoute: BrsrGeneralDisclosuresRoute,
   BrsrManagementProcessRoute: BrsrManagementProcessRoute,
   BrsrMethodologyRoute: BrsrMethodologyRoute,
