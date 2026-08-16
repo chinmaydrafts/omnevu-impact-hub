@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
+import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
+import { Route as BrsrDownloadsRouteImport } from './routes/brsr.downloads'
+import { Route as BrsrGeneralDisclosuresRouteImport } from './routes/brsr.general-disclosures'
+import { Route as BrsrManagementProcessRouteImport } from './routes/brsr.management-process'
+import { Route as BrsrMethodologyRouteImport } from './routes/brsr.methodology'
+import { Route as BrsrPrincipleIdRouteImport } from './routes/brsr.principle.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrsrIndexRoute = BrsrIndexRouteImport.update({
+  id: '/brsr/',
+  path: '/brsr/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrAssuranceRoute = BrsrAssuranceRouteImport.update({
+  id: '/brsr/assurance',
+  path: '/brsr/assurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrDownloadsRoute = BrsrDownloadsRouteImport.update({
+  id: '/brsr/downloads',
+  path: '/brsr/downloads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrGeneralDisclosuresRoute = BrsrGeneralDisclosuresRouteImport.update({
+  id: '/brsr/general-disclosures',
+  path: '/brsr/general-disclosures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrManagementProcessRoute = BrsrManagementProcessRouteImport.update({
+  id: '/brsr/management-process',
+  path: '/brsr/management-process',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrMethodologyRoute = BrsrMethodologyRouteImport.update({
+  id: '/brsr/methodology',
+  path: '/brsr/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrPrincipleIdRoute = BrsrPrincipleIdRouteImport.update({
+  id: '/brsr/principle/$id',
+  path: '/brsr/principle/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/downloads': typeof BrsrDownloadsRoute
+  '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
+  '/brsr/management-process': typeof BrsrManagementProcessRoute
+  '/brsr/methodology': typeof BrsrMethodologyRoute
+  '/brsr/': typeof BrsrIndexRoute
+  '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/downloads': typeof BrsrDownloadsRoute
+  '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
+  '/brsr/management-process': typeof BrsrManagementProcessRoute
+  '/brsr/methodology': typeof BrsrMethodologyRoute
+  '/brsr': typeof BrsrIndexRoute
+  '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/downloads': typeof BrsrDownloadsRoute
+  '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
+  '/brsr/management-process': typeof BrsrManagementProcessRoute
+  '/brsr/methodology': typeof BrsrMethodologyRoute
+  '/brsr/': typeof BrsrIndexRoute
+  '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/brsr/assurance'
+    | '/brsr/downloads'
+    | '/brsr/general-disclosures'
+    | '/brsr/management-process'
+    | '/brsr/methodology'
+    | '/brsr/'
+    | '/brsr/principle/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/brsr/assurance'
+    | '/brsr/downloads'
+    | '/brsr/general-disclosures'
+    | '/brsr/management-process'
+    | '/brsr/methodology'
+    | '/brsr'
+    | '/brsr/principle/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/brsr/assurance'
+    | '/brsr/downloads'
+    | '/brsr/general-disclosures'
+    | '/brsr/management-process'
+    | '/brsr/methodology'
+    | '/brsr/'
+    | '/brsr/principle/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrsrAssuranceRoute: typeof BrsrAssuranceRoute
+  BrsrDownloadsRoute: typeof BrsrDownloadsRoute
+  BrsrGeneralDisclosuresRoute: typeof BrsrGeneralDisclosuresRoute
+  BrsrManagementProcessRoute: typeof BrsrManagementProcessRoute
+  BrsrMethodologyRoute: typeof BrsrMethodologyRoute
+  BrsrIndexRoute: typeof BrsrIndexRoute
+  BrsrPrincipleIdRoute: typeof BrsrPrincipleIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brsr/': {
+      id: '/brsr/'
+      path: '/brsr'
+      fullPath: '/brsr/'
+      preLoaderRoute: typeof BrsrIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/assurance': {
+      id: '/brsr/assurance'
+      path: '/brsr/assurance'
+      fullPath: '/brsr/assurance'
+      preLoaderRoute: typeof BrsrAssuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/downloads': {
+      id: '/brsr/downloads'
+      path: '/brsr/downloads'
+      fullPath: '/brsr/downloads'
+      preLoaderRoute: typeof BrsrDownloadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/general-disclosures': {
+      id: '/brsr/general-disclosures'
+      path: '/brsr/general-disclosures'
+      fullPath: '/brsr/general-disclosures'
+      preLoaderRoute: typeof BrsrGeneralDisclosuresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/management-process': {
+      id: '/brsr/management-process'
+      path: '/brsr/management-process'
+      fullPath: '/brsr/management-process'
+      preLoaderRoute: typeof BrsrManagementProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/methodology': {
+      id: '/brsr/methodology'
+      path: '/brsr/methodology'
+      fullPath: '/brsr/methodology'
+      preLoaderRoute: typeof BrsrMethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/principle/$id': {
+      id: '/brsr/principle/$id'
+      path: '/brsr/principle/$id'
+      fullPath: '/brsr/principle/$id'
+      preLoaderRoute: typeof BrsrPrincipleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrsrAssuranceRoute: BrsrAssuranceRoute,
+  BrsrDownloadsRoute: BrsrDownloadsRoute,
+  BrsrGeneralDisclosuresRoute: BrsrGeneralDisclosuresRoute,
+  BrsrManagementProcessRoute: BrsrManagementProcessRoute,
+  BrsrMethodologyRoute: BrsrMethodologyRoute,
+  BrsrIndexRoute: BrsrIndexRoute,
+  BrsrPrincipleIdRoute: BrsrPrincipleIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
