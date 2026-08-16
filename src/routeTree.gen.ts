@@ -14,6 +14,7 @@ import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
 import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
 import { Route as BrsrGeneralDisclosuresRouteImport } from './routes/brsr.general-disclosures'
 import { Route as BrsrManagementProcessRouteImport } from './routes/brsr.management-process'
+import { Route as BrsrMethodologyRouteImport } from './routes/brsr.methodology'
 import { Route as BrsrPrincipleIdRouteImport } from './routes/brsr.principle.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const BrsrManagementProcessRoute = BrsrManagementProcessRouteImport.update({
   path: '/brsr/management-process',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrsrMethodologyRoute = BrsrMethodologyRouteImport.update({
+  id: '/brsr/methodology',
+  path: '/brsr/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrsrPrincipleIdRoute = BrsrPrincipleIdRouteImport.update({
   id: '/brsr/principle/$id',
   path: '/brsr/principle/$id',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
+  '/brsr/methodology': typeof BrsrMethodologyRoute
   '/brsr/': typeof BrsrIndexRoute
   '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
+  '/brsr/methodology': typeof BrsrMethodologyRoute
   '/brsr': typeof BrsrIndexRoute
   '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
+  '/brsr/methodology': typeof BrsrMethodologyRoute
   '/brsr/': typeof BrsrIndexRoute
   '/brsr/principle/$id': typeof BrsrPrincipleIdRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/brsr/assurance'
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
+    | '/brsr/methodology'
     | '/brsr/'
     | '/brsr/principle/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/brsr/assurance'
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
+    | '/brsr/methodology'
     | '/brsr'
     | '/brsr/principle/$id'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/brsr/assurance'
     | '/brsr/general-disclosures'
     | '/brsr/management-process'
+    | '/brsr/methodology'
     | '/brsr/'
     | '/brsr/principle/$id'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   BrsrAssuranceRoute: typeof BrsrAssuranceRoute
   BrsrGeneralDisclosuresRoute: typeof BrsrGeneralDisclosuresRoute
   BrsrManagementProcessRoute: typeof BrsrManagementProcessRoute
+  BrsrMethodologyRoute: typeof BrsrMethodologyRoute
   BrsrIndexRoute: typeof BrsrIndexRoute
   BrsrPrincipleIdRoute: typeof BrsrPrincipleIdRoute
 }
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrsrManagementProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brsr/methodology': {
+      id: '/brsr/methodology'
+      path: '/brsr/methodology'
+      fullPath: '/brsr/methodology'
+      preLoaderRoute: typeof BrsrMethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brsr/principle/$id': {
       id: '/brsr/principle/$id'
       path: '/brsr/principle/$id'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrsrAssuranceRoute: BrsrAssuranceRoute,
   BrsrGeneralDisclosuresRoute: BrsrGeneralDisclosuresRoute,
   BrsrManagementProcessRoute: BrsrManagementProcessRoute,
+  BrsrMethodologyRoute: BrsrMethodologyRoute,
   BrsrIndexRoute: BrsrIndexRoute,
   BrsrPrincipleIdRoute: BrsrPrincipleIdRoute,
 }
