@@ -1,22 +1,26 @@
-import { AlertCircle, CircleDashed, CircleHelp, CircleSlash, ShieldCheck, ShieldQuestion } from "lucide-react";
 import type { AssuranceStatus, DisclosureStatus } from "@/data/types";
 import { ASSURANCE_LABEL, STATUS_LABEL } from "@/data/report";
 
-const statusStyles: Record<DisclosureStatus, string> = {
-  "publicly-verified": "border-green/40 bg-green/12 text-green",
-  "pending-validation": "border-orange/40 bg-orange/12 text-orange",
-  "not-reported": "border-border bg-surface-elevated text-muted-foreground",
-  "not-applicable": "border-border bg-surface-elevated text-muted-foreground",
-  "applicability-review": "border-cyan/40 bg-cyan/12 text-cyan",
+/** Dot + label. Colour is never the only carrier of meaning — the label always reads. */
+const statusStyles: Record<DisclosureStatus, { wrap: string; dot: string }> = {
+  "publicly-verified": {
+    wrap: "border-status-green/40 bg-status-green/10 text-status-green",
+    dot: "bg-status-green",
+  },
+  "pending-validation": {
+    wrap: "border-status-orange/40 bg-status-orange/10 text-status-orange",
+    dot: "bg-status-orange",
+  },
+  "not-reported": { wrap: "border-border-strong bg-surface-elevated text-muted-foreground", dot: "bg-muted-foreground" },
+  "not-applicable": { wrap: "border-border-strong bg-transparent text-muted-foreground", dot: "bg-muted-foreground" },
+  "applicability-review": {
+    wrap: "border-status-blue/40 bg-status-blue/10 text-status-blue",
+    dot: "bg-status-blue",
+  },
 };
 
-const statusIcon: Record<DisclosureStatus, typeof ShieldCheck> = {
-  "publicly-verified": ShieldCheck,
-  "pending-validation": CircleDashed,
-  "not-reported": CircleSlash,
-  "not-applicable": CircleSlash,
-  "applicability-review": CircleHelp,
-};
+const badgeBase =
+  "inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[0.78rem] font-medium leading-none";
 
 export function DisclosureStatusBadge({
   status,
@@ -27,31 +31,34 @@ export function DisclosureStatusBadge({
   className?: string;
   compact?: boolean;
 }) {
-  const Icon = statusIcon[status];
+  const s = statusStyles[status];
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.75rem] font-medium leading-none ${statusStyles[status]} ${className}`}
-    >
-      <Icon aria-hidden="true" className="size-3.5" />
-      {compact ? null : STATUS_LABEL[status]}
-      {compact ? <span className="sr-only">{STATUS_LABEL[status]}</span> : null}
+    <span className={`${badgeBase} ${s.wrap} ${className}`}>
+      <span aria-hidden="true" className={`size-2 shrink-0 rounded-full ${s.dot}`} />
+      {compact ? <span className="sr-only">{STATUS_LABEL[status]}</span> : STATUS_LABEL[status]}
     </span>
   );
 }
 
 export function AssuranceBadge({ assurance, className = "" }: { assurance: AssuranceStatus; className?: string }) {
   const assured = assurance === "reasonable" || assurance === "limited";
-  const Icon = assured ? ShieldCheck : assurance === "not-supplied" ? ShieldQuestion : AlertCircle;
   const styles = assured
-    ? "border-green/40 bg-green/12 text-green"
+    ? "border-status-green/40 bg-status-green/10 text-status-green"
     : assurance === "internally-validated"
-      ? "border-cyan/40 bg-cyan/12 text-cyan"
-      : "border-border bg-surface-elevated text-muted-foreground";
+      ? "border-status-blue/40 bg-status-blue/10 text-status-blue"
+      : assurance === "unassured"
+        ? "border-status-orange/50 bg-transparent text-status-orange"
+        : "border-border-strong bg-transparent text-muted-foreground";
+  const dot = assured
+    ? "bg-status-green"
+    : assurance === "internally-validated"
+      ? "bg-status-blue"
+      : assurance === "unassured"
+        ? "bg-status-orange"
+        : "bg-muted-foreground";
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.75rem] font-medium leading-none ${styles} ${className}`}
-    >
-      <Icon aria-hidden="true" className="size-3.5" />
+    <span className={`${badgeBase} ${styles} ${className}`}>
+      <span aria-hidden="true" className={`size-2 shrink-0 rounded-full ${dot}`} />
       {ASSURANCE_LABEL[assurance]}
     </span>
   );
@@ -60,8 +67,10 @@ export function AssuranceBadge({ assurance, className = "" }: { assurance: Assur
 export function TierBadge({ tier }: { tier: "essential" | "leadership" }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[0.75rem] font-medium leading-none ${
-        tier === "essential" ? "border-primary/50 bg-primary/15 text-foreground" : "border-cyan/40 bg-cyan/12 text-cyan"
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[0.78rem] font-medium leading-none ${
+        tier === "essential"
+          ? "border-primary/40 bg-primary/10 text-primary"
+          : "border-cyan/50 bg-cyan/10 text-teal"
       }`}
     >
       {tier === "essential" ? "Essential Indicator" : "Leadership Indicator"}
