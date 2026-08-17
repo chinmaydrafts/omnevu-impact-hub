@@ -299,7 +299,8 @@
     display: none !important;
   }
 
-  [data-print-expand] {
+  [data-print-expand],
+  [data-print-expand] [hidden] {
     display: block !important;
     height: auto !important;
     overflow: visible !important;
