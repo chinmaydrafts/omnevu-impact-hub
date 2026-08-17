@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 export function PageHeader({
   eyebrow,
@@ -23,7 +23,7 @@ export function PageHeader({
   return (
     <div
       className="band-dark relative overflow-hidden border-b border-border"
-      style={accent ? ({ ["--accent" as string]: accent } as React.CSSProperties) : undefined}
+      style={accent ? ({ ["--accent" as string]: accent } as CSSProperties) : undefined}
     >
       <div
         aria-hidden="true"
