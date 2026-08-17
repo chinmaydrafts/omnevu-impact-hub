@@ -15,10 +15,10 @@ export function DataTable({
   exportMeta?: string[];
 }) {
   return (
-    <figure className="my-4">
-      <div className="mb-2.5 flex flex-wrap items-end justify-between gap-2">
+    <figure className="my-5">
+      <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
         {table.caption ? (
-          <figcaption className="text-sm font-medium text-foreground">{table.caption}</figcaption>
+          <figcaption className="text-[0.95rem] font-semibold text-foreground">{table.caption}</figcaption>
         ) : (
           <span />
         )}
@@ -33,15 +33,16 @@ export function DataTable({
           Export CSV
         </Button>
       </div>
-      <div className="overflow-x-auto rounded-lg border border-border bg-surface">
-        <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
-          <thead>
-            <tr className="border-b border-border bg-surface-elevated/70">
+      <div className="relative max-h-[34rem] overflow-auto rounded-xl border border-border bg-white shadow-[0_1px_2px_rgba(18,35,50,0.05)]">
+        <table className="w-full min-w-[36rem] border-collapse text-left text-[0.95rem]">
+          {table.caption ? <caption className="sr-only">{table.caption}</caption> : null}
+          <thead className="sticky top-0 z-10">
+            <tr className="bg-navy">
               {table.columns.map((col) => (
                 <th
                   key={col.key}
                   scope="col"
-                  className={`px-3.5 py-2.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground ${
+                  className={`whitespace-nowrap px-4 py-3 text-[0.78rem] font-semibold uppercase tracking-wide text-paper ${
                     col.numeric ? "text-right" : ""
                   }`}
                 >
@@ -52,7 +53,10 @@ export function DataTable({
           </thead>
           <tbody>
             {table.rows.map((row, i) => (
-              <tr key={i} className="border-b border-border/60 last:border-0 hover:bg-surface-elevated/40">
+              <tr
+                key={i}
+                className={`border-b border-[#e4eaee] last:border-0 ${i % 2 === 1 ? "bg-[#f7fafc]" : "bg-white"} hover:bg-tint-blue`}
+              >
                 {table.columns.map((col) => {
                   const raw = row[col.key];
                   const value = raw === null || raw === undefined || raw === "" ? "—" : String(raw);
@@ -60,8 +64,8 @@ export function DataTable({
                   return (
                     <td
                       key={col.key}
-                      className={`px-3.5 py-2.5 align-top ${col.numeric ? "text-right tabular-nums" : ""} ${
-                        pending ? "text-muted-foreground italic" : "text-foreground"
+                      className={`px-4 py-3 align-top ${col.numeric ? "text-right tabular-nums" : ""} ${
+                        pending ? "italic text-[#5d7484]" : "text-[#122332]"
                       }`}
                     >
                       {value}
@@ -73,8 +77,9 @@ export function DataTable({
           </tbody>
         </table>
       </div>
+      <p className="no-print mt-2 text-xs text-muted-foreground sm:hidden">Scroll the table horizontally to see all columns.</p>
       {table.footnotes?.length ? (
-        <ul className="mt-2.5 space-y-1 text-xs leading-relaxed text-muted-foreground">
+        <ul className="mt-3 space-y-1 text-xs leading-relaxed text-muted-foreground">
           {table.footnotes.map((note, i) => (
             <li key={i}>{note}</li>
           ))}
