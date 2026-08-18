@@ -67,59 +67,60 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
   /* Fixed brand scale — never overridden by bands */
-  --navy-950: #071522;
-  --navy-900: #0b1f33;
-  --navy-800: #12324a;
-  --paper: #f6f7f3;
-  --paper-warm: #f1f0e9;
-  --tint-blue: #eaf3f8;
-  --tint-green: #eaf5ee;
-  --tint-orange: #fff1e6;
+  --navy-950: #04121e;
+  --navy-900: #081b2b;
+  --navy-800: #11334a;
+  --paper: #f4f3ee;
+  --paper-warm: #edebe4;
+  --tint-blue: #e8f1f5;
+  --tint-green: #e9f4ed;
+  --tint-orange: #fdf1e6;
 
   /* Light reading surface (default) */
   --background: var(--paper);
   --surface: #ffffff;
   --surface-elevated: var(--paper-warm);
   --surface-subtle: var(--tint-blue);
-  --foreground: #122332;
-  --text-dark: #122332;
-  --muted-foreground: #4d6272;
-  --border: #d8e0e5;
-  --border-strong: #c2cfd7;
-  --input: #d8e0e5;
-  --ring: #1d87c8;
+  --foreground: #122532;
+  --text-dark: #122532;
+  --muted-foreground: #536874;
+  --border: #d4dee3;
+  --border-strong: #becdd6;
+  --input: #d4dee3;
+  --ring: #1478b8;
 
-  --primary: #1268a8;
-  --primary-hover: #0e5488;
+  --primary: #1478b8;
+  --primary-hover: #0f5d92;
   --primary-foreground: #ffffff;
   --secondary: var(--tint-blue);
-  --secondary-foreground: #122332;
+  --secondary-foreground: #122532;
   --muted: var(--paper-warm);
   --accent: var(--tint-blue);
-  --accent-foreground: #122332;
+  --accent-foreground: #122532;
   --card: #ffffff;
-  --card-foreground: #122332;
+  --card-foreground: #122532;
   --popover: #ffffff;
-  --popover-foreground: #122332;
+  --popover-foreground: #122532;
 
-  --cyan: #1aafc4;
-  --green: #229a62;
-  --orange: #ee8a42;
-  --gold: #c99a3d;
-  --magenta: #a34e78;
+  --cyan: #1aafc1;
+  --green: #239a64;
+  --orange: #ed8b43;
+  --gold: #c39a45;
+  --magenta: #9b4b72;
   --teal: #158a8d;
-  --warning: #a8611d;
+  --warning: #9d5a1a;
   --danger: #ae3e50;
   --destructive: #ae3e50;
   --destructive-foreground: #ffffff;
 
-  --status-green: #1e7b4d;
-  --status-orange: #a8611d;
-  --status-blue: #1268a8;
+  --status-green: #1b7b4e;
+  --status-orange: #9d5a1a;
+  --status-blue: #1478b8;
 }
+
 
 /* Dark editorial bands: header, hero covers, page banners, footer.
    Overrides the semantic tokens so existing utility classes invert cleanly. */
