@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/brsr/PageHeader";
-import { DisclosureList } from "@/components/brsr/DisclosureList";
+import { IndicatorTabs } from "@/components/brsr/IndicatorTabs";
 import { AssuranceBadge, DisclosureStatusBadge } from "@/components/brsr/badges";
 import { principleContent } from "@/data/principles";
 import { PRINCIPLES, report } from "@/data/report";
@@ -81,23 +81,12 @@ function PrinciplePage() {
           ) : null}
         </section>
 
-        <section aria-labelledby="essential" id="essential" className="scroll-mt-24">
-          <h2 id="essential-h" className="font-display text-2xl font-bold tracking-tight text-foreground">
-            Essential Indicators
-          </h2>
-          <div className="mt-5">
-            <DisclosureList disclosures={content.essential} contextLabel={`Principle ${meta.number} · Essential`} />
-          </div>
-        </section>
+        <IndicatorTabs
+          principleNumber={meta.number}
+          essential={content.essential}
+          leadership={content.leadership}
+        />
 
-        <section aria-labelledby="leadership" id="leadership" className="scroll-mt-24">
-          <h2 id="leadership-h" className="font-display text-2xl font-bold tracking-tight text-foreground">
-            Leadership Indicators
-          </h2>
-          <div className="mt-5">
-            <DisclosureList disclosures={content.leadership} contextLabel={`Principle ${meta.number} · Leadership`} />
-          </div>
-        </section>
 
         <nav aria-label="Principle navigation" className="no-print grid gap-3 border-t border-border pt-8 sm:grid-cols-2">
           {prev ? (
