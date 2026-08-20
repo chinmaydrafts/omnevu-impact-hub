@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/brsr/PageHeader";
-import { DisclosureList } from "@/components/brsr/DisclosureList";
+import { IndicatorTabs } from "@/components/brsr/IndicatorTabs";
 import { AssuranceBadge, DisclosureStatusBadge } from "@/components/brsr/badges";
 import { principleContent } from "@/data/principles";
 import { PRINCIPLES, report } from "@/data/report";
