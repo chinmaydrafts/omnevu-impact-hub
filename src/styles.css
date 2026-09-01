@@ -133,14 +133,12 @@
 
   --background: var(--paper);
   --surface: #101d2a;
-  --surface-elevated: #16273600;
   --surface-elevated: #162736;
   --surface-subtle: var(--tint-blue);
   --foreground: #edf2f5;
   --text-dark: #edf2f5;
   --muted-foreground: #9fb5c3;
   --border: #24394a;
-  --border-strong: #35506५;
   --border-strong: #35506a;
   --input: #24394a;
 
