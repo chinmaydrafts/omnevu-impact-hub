@@ -55,7 +55,7 @@ export function DataTable({
             {table.rows.map((row, i) => (
               <tr
                 key={i}
-                className={`border-b border-[#e4eaee] last:border-0 ${i % 2 === 1 ? "bg-[#f7fafc]" : "bg-white"} hover:bg-tint-blue`}
+                className={`border-b border-border last:border-0 ${i % 2 === 1 ? "bg-surface-elevated/60" : "bg-surface"} hover:bg-tint-blue`}
               >
                 {table.columns.map((col) => {
                   const raw = row[col.key];
@@ -65,7 +65,7 @@ export function DataTable({
                     <td
                       key={col.key}
                       className={`px-4 py-3 align-top ${col.numeric ? "text-right tabular-nums" : ""} ${
-                        pending ? "italic text-[#5d7484]" : "text-[#122332]"
+                        pending ? "italic text-muted-foreground" : "text-foreground"
                       }`}
                     >
                       {value}
