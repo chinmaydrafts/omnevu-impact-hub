@@ -122,6 +122,50 @@
 }
 
 
+/* Dark reading mode: inverts the default reading surface. Fixed brand navy
+   values stay intact so dark editorial bands remain distinguishable. */
+:root.dark {
+  --paper: #0b1622;
+  --paper-warm: #11212f;
+  --tint-blue: #12293a;
+  --tint-green: #10281f;
+  --tint-orange: #2a1e12;
+
+  --background: var(--paper);
+  --surface: #101d2a;
+  --surface-elevated: #162736;
+  --surface-subtle: var(--tint-blue);
+  --foreground: #edf2f5;
+  --text-dark: #edf2f5;
+  --muted-foreground: #9fb5c3;
+  --border: #24394a;
+  --border-strong: #35506a;
+  --input: #24394a;
+
+  --primary: #3ba0dc;
+  --primary-hover: #63b9ea;
+  --primary-foreground: #04121e;
+  --secondary: var(--tint-blue);
+  --secondary-foreground: #edf2f5;
+  --muted: var(--paper-warm);
+  --accent: var(--tint-blue);
+  --accent-foreground: #edf2f5;
+  --card: #101d2a;
+  --card-foreground: #edf2f5;
+  --popover: #101d2a;
+  --popover-foreground: #edf2f5;
+
+  --status-green: #6fd3a0;
+  --status-orange: #f7b47f;
+  --status-blue: #7cc6ec;
+  color-scheme: dark;
+}
+
+:root.dark .band-dark {
+  --background: var(--navy-950);
+  background-color: var(--navy-950);
+}
+
 /* Dark editorial bands: header, hero covers, page banners, footer.
    Overrides the semantic tokens so existing utility classes invert cleanly. */
 .band-dark {

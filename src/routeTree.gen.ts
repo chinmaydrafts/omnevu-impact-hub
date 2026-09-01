@@ -14,6 +14,7 @@ import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
 import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
 import { Route as BrsrDownloadsRouteImport } from './routes/brsr.downloads'
 import { Route as BrsrGeneralDisclosuresRouteImport } from './routes/brsr.general-disclosures'
+import { Route as BrsrGlossaryRouteImport } from './routes/brsr.glossary'
 import { Route as BrsrManagementProcessRouteImport } from './routes/brsr.management-process'
 import { Route as BrsrMethodologyRouteImport } from './routes/brsr.methodology'
 import { Route as BrsrPrincipleIdRouteImport } from './routes/brsr.principle.$id'
@@ -43,6 +44,11 @@ const BrsrGeneralDisclosuresRoute = BrsrGeneralDisclosuresRouteImport.update({
   path: '/brsr/general-disclosures',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrsrGlossaryRoute = BrsrGlossaryRouteImport.update({
+  id: '/brsr/glossary',
+  path: '/brsr/glossary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrsrManagementProcessRoute = BrsrManagementProcessRouteImport.update({
   id: '/brsr/management-process',
   path: '/brsr/management-process',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
+  '/brsr/glossary': typeof BrsrGlossaryRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/methodology': typeof BrsrMethodologyRoute
   '/brsr/': typeof BrsrIndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
+  '/brsr/glossary': typeof BrsrGlossaryRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/methodology': typeof BrsrMethodologyRoute
   '/brsr': typeof BrsrIndexRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/brsr/assurance': typeof BrsrAssuranceRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
+  '/brsr/glossary': typeof BrsrGlossaryRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
   '/brsr/methodology': typeof BrsrMethodologyRoute
   '/brsr/': typeof BrsrIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/brsr/assurance'
     | '/brsr/downloads'
     | '/brsr/general-disclosures'
+    | '/brsr/glossary'
     | '/brsr/management-process'
     | '/brsr/methodology'
     | '/brsr/'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/brsr/assurance'
     | '/brsr/downloads'
     | '/brsr/general-disclosures'
+    | '/brsr/glossary'
     | '/brsr/management-process'
     | '/brsr/methodology'
     | '/brsr'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/brsr/assurance'
     | '/brsr/downloads'
     | '/brsr/general-disclosures'
+    | '/brsr/glossary'
     | '/brsr/management-process'
     | '/brsr/methodology'
     | '/brsr/'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   BrsrAssuranceRoute: typeof BrsrAssuranceRoute
   BrsrDownloadsRoute: typeof BrsrDownloadsRoute
   BrsrGeneralDisclosuresRoute: typeof BrsrGeneralDisclosuresRoute
+  BrsrGlossaryRoute: typeof BrsrGlossaryRoute
   BrsrManagementProcessRoute: typeof BrsrManagementProcessRoute
   BrsrMethodologyRoute: typeof BrsrMethodologyRoute
   BrsrIndexRoute: typeof BrsrIndexRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrsrGeneralDisclosuresRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brsr/glossary': {
+      id: '/brsr/glossary'
+      path: '/brsr/glossary'
+      fullPath: '/brsr/glossary'
+      preLoaderRoute: typeof BrsrGlossaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brsr/management-process': {
       id: '/brsr/management-process'
       path: '/brsr/management-process'
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrsrAssuranceRoute: BrsrAssuranceRoute,
   BrsrDownloadsRoute: BrsrDownloadsRoute,
   BrsrGeneralDisclosuresRoute: BrsrGeneralDisclosuresRoute,
+  BrsrGlossaryRoute: BrsrGlossaryRoute,
   BrsrManagementProcessRoute: BrsrManagementProcessRoute,
   BrsrMethodologyRoute: BrsrMethodologyRoute,
   BrsrIndexRoute: BrsrIndexRoute,
