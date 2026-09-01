@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { Check, FileText, Link2, Minus, Plus } from "lucide-react";
+import { BookmarkButton } from "./BookmarkButton";
+import { GlossaryText } from "./GlossaryText";
 import { DataTable } from "./DataTable";
 import { AssuranceBadge, DisclosureStatusBadge, TierBadge } from "./badges";
 import type { Disclosure } from "@/data/types";
 
 function EvidenceRail({ disclosure }: { disclosure: Disclosure }) {
   return (
-    <div className="mt-5 grid gap-4 rounded-xl border border-[#cfe0ea] bg-tint-blue p-4 sm:grid-cols-2">
+    <div className="mt-5 grid gap-4 rounded-xl border border-border-strong bg-tint-blue p-4 sm:grid-cols-2">
       <div className="min-w-0">
         <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Evidence</p>
         <ul className="mt-2 space-y-1.5">
@@ -56,6 +59,7 @@ export function DisclosureItem({
   const [open, setOpen] = useState(defaultOpen);
   const [copied, setCopied] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = useRouterState({ select: (st) => st.location.pathname });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -92,7 +96,7 @@ export function DisclosureItem({
       id={disclosure.id}
       data-print-expand
       className={`scroll-mt-28 overflow-hidden rounded-xl border bg-surface shadow-[0_1px_2px_rgba(18,35,50,0.04)] transition-colors target:border-primary ${
-        open ? "border-[#b6cddb]" : "border-border"
+        open ? "border-primary/50" : "border-border"
       }`}
     >
       <div className="flex items-start gap-2 p-4 sm:p-5">
@@ -135,24 +139,35 @@ export function DisclosureItem({
         >
           {copied ? <Check aria-hidden="true" className="size-4 text-status-green" /> : <Link2 aria-hidden="true" className="size-4" />}
         </button>
+        <BookmarkButton
+          id={disclosure.id}
+          number={disclosure.number}
+          title={disclosure.title}
+          context={contextLabel}
+          route={pathname}
+        />
       </div>
 
       <div
         id={`${disclosure.id}-panel`}
         hidden={!open}
-        className="border-t border-border bg-[#fcfdfe] px-4 pb-6 pt-5 sm:px-6"
+        className="border-t border-border bg-surface px-4 pb-6 pt-5 sm:px-6"
       >
-        <p className="text-[0.95rem] leading-relaxed text-muted-foreground">{disclosure.question}</p>
+        <p className="text-[0.95rem] leading-relaxed text-muted-foreground">
+          <GlossaryText text={disclosure.question} />
+        </p>
 
         {disclosure.applicabilityReason ? (
-          <p className="mt-4 rounded-xl border border-[#cfe0ea] bg-tint-blue p-4 text-[0.95rem] leading-relaxed text-foreground">
+          <p className="mt-4 rounded-xl border border-border-strong bg-tint-blue p-4 text-[0.95rem] leading-relaxed text-foreground">
             <span className="font-semibold text-primary">Applicability note. </span>
             {disclosure.applicabilityReason}
           </p>
         ) : null}
 
         {disclosure.narrative ? (
-          <p className="mt-4 text-[1rem] leading-relaxed text-foreground">{disclosure.narrative}</p>
+          <p className="mt-4 text-[1rem] leading-relaxed text-foreground">
+            <GlossaryText text={disclosure.narrative} />
+          </p>
         ) : null}
 
         {tables.map((table, i) => (
