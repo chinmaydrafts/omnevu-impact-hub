@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
 import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
+import { Route as BrsrBookmarksRouteImport } from './routes/brsr.bookmarks'
 import { Route as BrsrDownloadsRouteImport } from './routes/brsr.downloads'
 import { Route as BrsrGeneralDisclosuresRouteImport } from './routes/brsr.general-disclosures'
 import { Route as BrsrGlossaryRouteImport } from './routes/brsr.glossary'
@@ -32,6 +33,11 @@ const BrsrIndexRoute = BrsrIndexRouteImport.update({
 const BrsrAssuranceRoute = BrsrAssuranceRouteImport.update({
   id: '/brsr/assurance',
   path: '/brsr/assurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrBookmarksRoute = BrsrBookmarksRouteImport.update({
+  id: '/brsr/bookmarks',
+  path: '/brsr/bookmarks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrsrDownloadsRoute = BrsrDownloadsRouteImport.update({
@@ -68,6 +74,7 @@ const BrsrPrincipleIdRoute = BrsrPrincipleIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/bookmarks': typeof BrsrBookmarksRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/glossary': typeof BrsrGlossaryRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/bookmarks': typeof BrsrBookmarksRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/glossary': typeof BrsrGlossaryRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/bookmarks': typeof BrsrBookmarksRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/glossary': typeof BrsrGlossaryRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/brsr/assurance'
+    | '/brsr/bookmarks'
     | '/brsr/downloads'
     | '/brsr/general-disclosures'
     | '/brsr/glossary'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/brsr/assurance'
+    | '/brsr/bookmarks'
     | '/brsr/downloads'
     | '/brsr/general-disclosures'
     | '/brsr/glossary'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/brsr/assurance'
+    | '/brsr/bookmarks'
     | '/brsr/downloads'
     | '/brsr/general-disclosures'
     | '/brsr/glossary'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrsrAssuranceRoute: typeof BrsrAssuranceRoute
+  BrsrBookmarksRoute: typeof BrsrBookmarksRoute
   BrsrDownloadsRoute: typeof BrsrDownloadsRoute
   BrsrGeneralDisclosuresRoute: typeof BrsrGeneralDisclosuresRoute
   BrsrGlossaryRoute: typeof BrsrGlossaryRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/brsr/assurance'
       fullPath: '/brsr/assurance'
       preLoaderRoute: typeof BrsrAssuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/bookmarks': {
+      id: '/brsr/bookmarks'
+      path: '/brsr/bookmarks'
+      fullPath: '/brsr/bookmarks'
+      preLoaderRoute: typeof BrsrBookmarksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brsr/downloads': {
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrsrAssuranceRoute: BrsrAssuranceRoute,
+  BrsrBookmarksRoute: BrsrBookmarksRoute,
   BrsrDownloadsRoute: BrsrDownloadsRoute,
   BrsrGeneralDisclosuresRoute: BrsrGeneralDisclosuresRoute,
   BrsrGlossaryRoute: BrsrGlossaryRoute,
