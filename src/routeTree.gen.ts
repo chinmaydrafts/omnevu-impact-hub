@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrsrIndexRouteImport } from './routes/brsr.index'
 import { Route as BrsrAssuranceRouteImport } from './routes/brsr.assurance'
+import { Route as BrsrBookmarksRouteImport } from './routes/brsr.bookmarks'
 import { Route as BrsrDownloadsRouteImport } from './routes/brsr.downloads'
+import { Route as BrsrExecutiveSummaryRouteImport } from './routes/brsr.executive-summary'
 import { Route as BrsrGeneralDisclosuresRouteImport } from './routes/brsr.general-disclosures'
 import { Route as BrsrGlossaryRouteImport } from './routes/brsr.glossary'
 import { Route as BrsrManagementProcessRouteImport } from './routes/brsr.management-process'
@@ -34,9 +36,19 @@ const BrsrAssuranceRoute = BrsrAssuranceRouteImport.update({
   path: '/brsr/assurance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrsrBookmarksRoute = BrsrBookmarksRouteImport.update({
+  id: '/brsr/bookmarks',
+  path: '/brsr/bookmarks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrsrDownloadsRoute = BrsrDownloadsRouteImport.update({
   id: '/brsr/downloads',
   path: '/brsr/downloads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrsrExecutiveSummaryRoute = BrsrExecutiveSummaryRouteImport.update({
+  id: '/brsr/executive-summary',
+  path: '/brsr/executive-summary',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrsrGeneralDisclosuresRoute = BrsrGeneralDisclosuresRouteImport.update({
@@ -68,7 +80,9 @@ const BrsrPrincipleIdRoute = BrsrPrincipleIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/bookmarks': typeof BrsrBookmarksRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
+  '/brsr/executive-summary': typeof BrsrExecutiveSummaryRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/glossary': typeof BrsrGlossaryRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
@@ -79,7 +93,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/bookmarks': typeof BrsrBookmarksRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
+  '/brsr/executive-summary': typeof BrsrExecutiveSummaryRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/glossary': typeof BrsrGlossaryRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
@@ -91,7 +107,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/brsr/assurance': typeof BrsrAssuranceRoute
+  '/brsr/bookmarks': typeof BrsrBookmarksRoute
   '/brsr/downloads': typeof BrsrDownloadsRoute
+  '/brsr/executive-summary': typeof BrsrExecutiveSummaryRoute
   '/brsr/general-disclosures': typeof BrsrGeneralDisclosuresRoute
   '/brsr/glossary': typeof BrsrGlossaryRoute
   '/brsr/management-process': typeof BrsrManagementProcessRoute
@@ -104,7 +122,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/brsr/assurance'
+    | '/brsr/bookmarks'
     | '/brsr/downloads'
+    | '/brsr/executive-summary'
     | '/brsr/general-disclosures'
     | '/brsr/glossary'
     | '/brsr/management-process'
@@ -115,7 +135,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/brsr/assurance'
+    | '/brsr/bookmarks'
     | '/brsr/downloads'
+    | '/brsr/executive-summary'
     | '/brsr/general-disclosures'
     | '/brsr/glossary'
     | '/brsr/management-process'
@@ -126,7 +148,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/brsr/assurance'
+    | '/brsr/bookmarks'
     | '/brsr/downloads'
+    | '/brsr/executive-summary'
     | '/brsr/general-disclosures'
     | '/brsr/glossary'
     | '/brsr/management-process'
@@ -138,7 +162,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrsrAssuranceRoute: typeof BrsrAssuranceRoute
+  BrsrBookmarksRoute: typeof BrsrBookmarksRoute
   BrsrDownloadsRoute: typeof BrsrDownloadsRoute
+  BrsrExecutiveSummaryRoute: typeof BrsrExecutiveSummaryRoute
   BrsrGeneralDisclosuresRoute: typeof BrsrGeneralDisclosuresRoute
   BrsrGlossaryRoute: typeof BrsrGlossaryRoute
   BrsrManagementProcessRoute: typeof BrsrManagementProcessRoute
@@ -170,11 +196,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrsrAssuranceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brsr/bookmarks': {
+      id: '/brsr/bookmarks'
+      path: '/brsr/bookmarks'
+      fullPath: '/brsr/bookmarks'
+      preLoaderRoute: typeof BrsrBookmarksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brsr/downloads': {
       id: '/brsr/downloads'
       path: '/brsr/downloads'
       fullPath: '/brsr/downloads'
       preLoaderRoute: typeof BrsrDownloadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brsr/executive-summary': {
+      id: '/brsr/executive-summary'
+      path: '/brsr/executive-summary'
+      fullPath: '/brsr/executive-summary'
+      preLoaderRoute: typeof BrsrExecutiveSummaryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/brsr/general-disclosures': {
@@ -218,7 +258,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrsrAssuranceRoute: BrsrAssuranceRoute,
+  BrsrBookmarksRoute: BrsrBookmarksRoute,
   BrsrDownloadsRoute: BrsrDownloadsRoute,
+  BrsrExecutiveSummaryRoute: BrsrExecutiveSummaryRoute,
   BrsrGeneralDisclosuresRoute: BrsrGeneralDisclosuresRoute,
   BrsrGlossaryRoute: BrsrGlossaryRoute,
   BrsrManagementProcessRoute: BrsrManagementProcessRoute,

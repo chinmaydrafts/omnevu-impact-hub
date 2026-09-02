@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Download, Menu, Printer, X } from "lucide-react";
+import { Bookmark, Download, Menu, Printer, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
+import { useBookmarks } from "@/lib/bookmarks";
 import { OmneVuLogo } from "./OmneVuLogo";
 import { SearchDialog } from "./SearchDialog";
 import { PRINCIPLES } from "@/data/report";
@@ -10,6 +12,7 @@ const navLinks = [
   { to: "/brsr/assurance", label: "Assurance" },
   { to: "/brsr/general-disclosures", label: "Section A" },
   { to: "/brsr/management-process", label: "Section B" },
+  { to: "/brsr/executive-summary", label: "Summary" },
 ];
 
 const navBase =
@@ -20,6 +23,7 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [principlesOpen, setPrinciplesOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { items: bookmarks } = useBookmarks();
 
   useEffect(() => {
     setMobileOpen(false);
@@ -98,6 +102,22 @@ export function SiteHeader() {
           <SearchDialog />
 
           <Link
+            to="/brsr/bookmarks"
+            aria-label={`Saved disclosures (${bookmarks.length})`}
+            className="relative hidden h-9 items-center gap-2 rounded-full border border-border px-3.5 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground md:inline-flex"
+          >
+            <Bookmark aria-hidden="true" className="size-4" />
+            Saved
+            {bookmarks.length > 0 ? (
+              <span className="grid min-w-5 place-items-center rounded-full bg-primary px-1.5 text-[0.7rem] font-semibold tabular-nums text-primary-foreground">
+                {bookmarks.length}
+              </span>
+            ) : null}
+          </Link>
+
+          <ThemeToggle />
+
+          <Link
             to="/brsr/downloads"
             aria-label="Downloads and data exports"
             className="hidden h-9 items-center gap-2 rounded-full border border-border px-3.5 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground md:inline-flex"
@@ -145,6 +165,12 @@ export function SiteHeader() {
             </Link>
             <Link to="/brsr/methodology" className="rounded-lg px-3 py-3 text-[0.95rem] font-medium text-foreground hover:bg-surface-elevated">
               Methodology
+            </Link>
+            <Link to="/brsr/glossary" className="rounded-lg px-3 py-3 text-[0.95rem] font-medium text-foreground hover:bg-surface-elevated">
+              Glossary
+            </Link>
+            <Link to="/brsr/bookmarks" className="rounded-lg px-3 py-3 text-[0.95rem] font-medium text-foreground hover:bg-surface-elevated">
+              Saved disclosures{bookmarks.length ? ` (${bookmarks.length})` : ""}
             </Link>
           </div>
           <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
