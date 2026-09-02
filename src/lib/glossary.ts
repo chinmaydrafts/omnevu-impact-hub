@@ -3,7 +3,7 @@ import { definitions } from "@/data/methodology";
 export interface GlossaryEntry {
   term: string;
   definition: string;
-  aliases?: string[];
+  aliases?: string[] | undefined;
 }
 
 /** Report glossary: the shared methodology definitions plus reporting shorthand

@@ -55,6 +55,9 @@ export function SiteFooter() {
               <li><Link to="/brsr/management-process" className="hover:text-primary">Section B</Link></li>
               <li><Link to="/brsr/methodology" className="hover:text-primary">Methodology</Link></li>
               <li><Link to="/brsr/downloads" className="hover:text-primary">Downloads</Link></li>
+              <li><Link to="/brsr/executive-summary" className="hover:text-primary">Executive summary</Link></li>
+              <li><Link to="/brsr/glossary" className="hover:text-primary">Glossary</Link></li>
+              <li><Link to="/brsr/bookmarks" className="hover:text-primary">Saved disclosures</Link></li>
             </ul>
           </nav>
 
