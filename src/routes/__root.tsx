@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/brsr/SiteHeader";
+import { ReadingProgress } from "../components/brsr/ReadingProgress";
+import { themeBootstrapScript } from "../lib/theme";
 import { SiteFooter } from "../components/brsr/SiteFooter";
 
 function NotFoundComponent() {
@@ -112,6 +114,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
       </head>
       <body>
         {children}
@@ -134,6 +137,7 @@ function RootComponent() {
           Skip to content
         </a>
         <SiteHeader />
+        <ReadingProgress />
         <main id="main-content" className="flex-1">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
