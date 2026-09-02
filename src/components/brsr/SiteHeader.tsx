@@ -38,10 +38,8 @@ export function SiteHeader() {
       <div className="mx-auto grid max-w-[90rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3.5 sm:px-6 lg:px-8">
         <Link to="/brsr" className="flex min-w-0 items-center gap-3.5 text-foreground">
           <OmneVuLogo size={34} />
-          <span className="hidden min-w-0 border-l border-border pl-3.5 text-[0.8rem] leading-tight text-muted-foreground sm:block">
-            Business Responsibility and
-            <br />
-            Sustainability Report
+          <span className="hidden border-l border-border pl-3.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:block">
+            BRSR
           </span>
         </Link>
 
